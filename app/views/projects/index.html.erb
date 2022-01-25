@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark flex-nowrap">
+    <a class="navbar-brand" href="#">
+      <img src="/assets/logo.png" alt="ロゴ画像" width="130" height="40" class="">
+    </a>
+    <div class="btn-toolbar flex-nowrap" role="toolbar" aria-label="Toolbar with button groups">
+      <button type="button" class="mr-3 btn btn-secondary text-nowrap"  href="#">ログインorマイページ</button>
+      <button type="button" class="btn btn-secondary text-nowrap" href="#">新規登録orサインアウト</button>
+    </div>
+  </nav>
+  <div class="mx-3 my-2 fs-6">
+  見積電機株式会社　ます様　
+  </div>
+  <div class="row flex-nowrap overflow-auto mx-1" >
+    <div class="col" >
+      <div class="card" style="width: 15rem;">
+        <img class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">見積６</h5>
+          <p class="card-text">¥600000 2022/01/16</p>
+          <a href="#" class="btn btn-primary">詳細表示</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="width: 15rem;">
+        <img class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">見積５</h5>
+          <p class="card-text">¥500000 2022/01/15</p>
+          <a href="#" class="btn btn-primary">詳細表示</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="width: 15rem;">
+        <img class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">見積４</h5>
+          <p class="card-text">¥400000 2022/01/14</p>
+          <a href="#" class="btn btn-primary">詳細表示</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="width: 15rem;">
+        <img class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">見積３</h5>
+          <p class="card-text">¥300000 2022/01/13</p>
+          <a href="#" class="btn btn-primary">詳細表示</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="width: 15rem;">
+        <img class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">見積２</h5>
+          <p class="card-text">¥200000 2022/01/12</p>
+          <a href="#" class="btn btn-primary">詳細表示</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="width: 15rem;">
+        <img class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">見積１</h5>
+          <p class="card-text">¥100000 2022/01/11</p>
+          <a href="#" class="btn btn-primary">詳細表示</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="d-flex mx-2">
+    <div class="text-nowrap ">
+    <button type="button" class="my-1 mx-2 btn btn-secondary text-nowrap"  href="#">印刷用</button>
+    <button type="button" class="my-1 mx-2 btn btn-secondary text-nowrap"  href="#">商品追加</button>
+    <button type="button" class="my-1 mx-2 btn btn-secondary text-nowrap"  href="#">商品編集</button>
+    </div>
+    <div class="d-flex"> 
+      <h3 class="bg-info my-1 mx-2 py-1 px-2 text-nowrap" style="height:40px;">
+      件名：見積６
+      </h3>
+      <h3 class="bg-info my-1 mx-5 py-1 px-2 text-nowrap" style="height:40px;">
+      合計金額：¥100000
+      </h3>
+      <h3 class="bg-info my-1 mx-2 py-1 px-2 text-nowrap" style="height:40px;">
+      No.0000xxxxxx
+      </h3>
+    </div>
+  </span>  
+  <div class="mx-2">
+    <div class="d-flex d-flex justify-content-start">
+      <div class="text-nowrap ">
+        <button type="button" class="d-flex text-nowrap justify-content-between rounded-pill border border-dark list-group-item list-group-item-action" style="width:220px;">
+          <div>商品1</div>
+          <div>¥1000</div>
+        </button>
+        <button type="button" class="my-2 d-flex text-nowrap justify-content-between rounded-pill border border-dark list-group-item list-group-item-action" style="width:220px;">
+          <div>商品2</div>
+          <div>¥2000</div>
+        </button>
+        <button type="button" class="my-2 d-flex text-nowrap justify-content-between rounded-pill border border-dark list-group-item list-group-item-action" style="width:220px;">
+          <div>商品3</div>
+          <div>¥3000</div>
+        </button>
+        <button type="button" class="my-2 d-flex text-nowrap justify-content-between rounded-pill border border-dark list-group-item list-group-item-action" style="width:220px;">
+          <div>商品4</div>
+          <div>¥4000</div>
+        </button>
+      </div>
+      <div class="mx-2 text-nowrap bg-success border border-dark" style="width:100%; height:500px;">
+        <%= render "shared/goods_detail" %>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

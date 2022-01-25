@@ -8,12 +8,12 @@
 | encrypted_password         | string | null: false               |
 | last_name                  | string | null: false               |
 | first_name                 | string | null: false               |
-| last_kana                  | string | null: false               |
-| first_kana                 | string | null: false               |
-| company                 b  | string | null: false               |
-| address                    | string | null: false               |
-| phone                      | string | null: false               |
-| info                       | text   | null: false               |
+| last_kana                  | string |                           |
+| first_kana                 | string |                           |
+| company                    | string |                           |
+| address                    | string |                           |
+| phone_num                  | string | null: false               |
+| info                       | text   |                           |
 
 ### Association
 
@@ -24,15 +24,15 @@
 
 | Column                     | Type        | Options                         |
 | -------------------------- | ----------- | ------------------------------- |
-| cli_email                  | string      | null: false, unique: true       |
-| cli_company                | string      | null: false                     |
+| cli_email                  | string      |                                 |
+| cli_company                | string      |                                 |
 | cli_last_name              | string      | null: false                     |
 | cli_first_name             | string      | null: false                     |
-| cli_last_kana              | string      | null: false                     |
-| cli_first_kana             | string      | null: false                     |
-| cli_address                | string      | null: false                     |
-| cli_phone                  | string      | null: false                     |
-| cli_info                   | text        | null: false                     |
+| cli_last_kana              | string      |                                 |
+| cli_first_kana             | string      |                                 |
+| cli_address                | string      |                                 |
+| cli_phone_num              | string      | null: false                     |
+| cli_info                   | text        |                                 |
 | user                       | references  | null: false, foreign_key: true  |
 
 ### Association
@@ -47,7 +47,6 @@
 | pro_day                    | string      | null: false                     |
 | pro_number                 | string      | null: false                     |
 | pro_name                   | string      | null: false                     |
-| pro_info                   | string      | null: false                     |
 | user                       | references  | null: false, foreign_key: true  |
 | client                     | references  | null: false, foreign_key: true  |
 
