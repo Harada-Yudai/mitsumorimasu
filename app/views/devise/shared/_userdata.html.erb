@@ -1,0 +1,34 @@
+<div class="field">
+  <%= f.label :last_name %> <em></em><br />
+  <%= f.text_field :last_name, autofocus: true, placeholder:"山田"%>
+</div>
+
+<div class="field">
+  <%= f.label :first_name %> <em></em><br />
+  <%= f.text_field :first_name, placeholder:"太郎"%>
+</div>
+
+<div class="field">
+  <%= f.label :company %> <em></em><br />
+  <%= f.text_field :company, placeholder:"会社名"%>
+</div>
+
+<div class="field">
+  <%= f.label :address %> <em></em><br />
+  <%= f.text_field :address, placeholder:"住所"%>
+</div>
+
+<div class="field">
+  <%= f.label :phone_num %> <em></em><br />
+  <%= f.text_field :phone_num, placeholder:"電話番号"%>
+</div>
+
+<div class="field">
+  <%= f.label :info %> <em></em><br />
+  <%= f.text_area :info, placeholder:"備考"%>
+</div>
+
+<div class="field">
+  <%= f.label :email %><br />
+  <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレス"%>
+</div>
