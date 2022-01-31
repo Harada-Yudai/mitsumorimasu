@@ -5,7 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-  validates :last_name, presence: true
-  validates :first_name, presence: true
-  validates :phone_num, presence: true
+  validates :cli_last_name , presence: true
+  validates :cli_first_name, presence: true
+  validates :cli_phone_num , presence: true
+
+  # has_many :clients
+  # has_many :projects
 end
