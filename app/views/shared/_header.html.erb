@@ -1,10 +1,10 @@
 <nav class="navbar navbar-dark bg-dark flex-nowrap">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand">
     <img src="/assets/logo.png" alt="ロゴ画像" width="130" height="40" class="">
   </a>
   <% if user_signed_in? %>
     <div class="btn-toolbar flex-nowrap" role="toolbar" aria-label="Toolbar with button groups">
-      <%= link_to current_user.last_name+" "+current_user.first_name, user_path(current_user.id), class:"mr-3 btn btn-secondary text-nowrap"%>
+      <%= link_to current_user.last_name+" "+current_user.first_name, root_path, class:"mr-3 btn btn-secondary text-nowrap"%>
       <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"btn btn-secondary text-nowrap"%>
     </div>
   <% else %>

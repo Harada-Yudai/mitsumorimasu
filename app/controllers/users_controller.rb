@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
 
-  def show
+  def index
+    if user_signed_in?
+    @clients = Client.where(user_id: current_user.id).order('created_at DESC')
+    end
   end
 
   def edit
@@ -9,6 +12,6 @@ class UsersController < ApplicationController
   def update
   end
 
-  
 end
+
 

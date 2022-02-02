@@ -1,0 +1,44 @@
+<%= render "shared/header" %>
+<h2>取引先追加ページ</h2>
+<%= form_with model: @client, url: user_clients_path, local: true do |f| %>
+      <%= render 'shared/error_messages', model: f.object %>
+      
+  <div class="field">
+    <%= f.label :cli_last_name %> <em></em><br />
+    <%= f.text_field :cli_last_name, autofocus: true, placeholder:"山田"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :cli_first_name %> <em></em><br />
+    <%= f.text_field :cli_first_name, placeholder:"太郎"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :cli_company %> <em></em><br />
+    <%= f.text_field :cli_company, placeholder:"会社名"%>
+  </div>
+  
+  <div class="field">
+    <%= f.label :cli_address %> <em></em><br />
+    <%= f.text_field :cli_address, placeholder:"住所"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :cli_phone_num %> <em></em><br />
+    <%= f.text_field :cli_phone_num, placeholder:"電話番号"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :cli_info %> <em></em><br />
+    <%= f.text_area :cli_info, placeholder:"備考"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :cli_email %><br />
+    <%= f.email_field :cli_email, placeholder:"メールアドレス"%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "追加" %>
+  </div>
+<% end %>

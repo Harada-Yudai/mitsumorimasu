@@ -1,0 +1,36 @@
+<%= render "shared/header" %> 
+<% if user_signed_in? %>
+  <div>
+    <%= link_to '個人情報編集', edit_user_registration_path, class:"mr-3 btn btn-secondary text-nowrap" %>
+  </div>
+  <ul>
+    <li><%= current_user.last_name %></li>
+    <li><%= current_user.first_name %></li>
+    <li><%= current_user.last_kana %></li>
+    <li><%= current_user.first_kana %></li>
+    <li><%= current_user.company %></li>
+    <li><%= current_user.address %></li>
+    <li><%= current_user.phone_num %></li>
+    <li><%= current_user.info %></li>
+  </ul>
+  <div>
+    <%= link_to '取引先追加', new_user_client_path(current_user.id), class:"mr-3 btn btn-secondary text-nowrap" %>
+  </div>
+  <div>
+    取引先一覧
+    <ul>
+      <% @clients.each do |client| %>
+        <li>
+          <div>
+            <%= link_to client.cli_last_name + client.cli_last_name + client.cli_phone_num,  user_clients_path(current_user.id,id:client.id), class:"" %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <div>
+    ログインしてください
+  </div>
+<% end %>
+

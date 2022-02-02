@@ -27,7 +27,7 @@
 | cli_email                  | string      |                                 |
 | cli_company                | string      |                                 |
 | cli_last_name              | string      | null: false                     |
-| cli_first_name             | string      | null: false                     |
+| cli_last_name              | string      | null: false                     |
 | cli_last_kana              | string      |                                 |
 | cli_first_kana             | string      |                                 |
 | cli_address                | string      |                                 |
