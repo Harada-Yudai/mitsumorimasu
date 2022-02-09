@@ -47,6 +47,7 @@
 | pro_day                    | string      | null: false                     |
 | pro_number                 | string      | null: false                     |
 | pro_name                   | string      | null: false                     |
+| pro_info                   | string      |                                 |
 | user                       | references  | null: false, foreign_key: true  |
 | client                     | references  | null: false, foreign_key: true  |
 
@@ -63,7 +64,7 @@
 | gd_name                    | string      | null: false                     |
 | gd_price                   | string      | null: false                     |
 | gd_amount                  | string      | null: false                     |
-| gd_info                    | string      | null: false                     |
+| gd_info                    | string      |                                 |
 | project                    | references  | null: false, foreign_key: true  |
 
 ### Association

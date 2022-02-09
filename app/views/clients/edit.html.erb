@@ -1,6 +1,6 @@
 <%= render "shared/header" %>
 <h2>お客様情報変更</h2>
-<%= form_with model: @client, url: user_client_path(current_user.id,id:@client.id), local: true do |f| %>
+<%= form_with model: @client, url: user_client_path(current_user.id,client_id:@client.id), local: true do |f| %>
       <%= render 'shared/error_messages', model: f.object %>
       
   <div class="field">

@@ -5,5 +5,5 @@ class Client < ApplicationRecord
   validates :cli_phone_num, presence: true
 
   belongs_to :user
- # has_many :projects
+  has_many :projects
 end
