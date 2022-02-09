@@ -2,7 +2,8 @@ class ClientsController < ApplicationController
 
 
   def index
-    @client = Client.find(params[:id])
+    @client = Client.find(params[:client_id])
+    @projects = Project.where(client_id: params[:client_id]).order('created_at DESC')
   end
 
   def new
@@ -19,12 +20,13 @@ class ClientsController < ApplicationController
   end
 
   def edit
-    @client = Client.find(params[:id])
+    @client = Client.find(params[:client_id])
   end
 
   def update
     @client = Client.find(params[:id])
     @client.update(client_params)
+    @projects = Project.where(params[:client_id]).order('created_at DESC')
     if @client.save
       render :index
     else

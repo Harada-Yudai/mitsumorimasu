@@ -1,0 +1,33 @@
+<%= render "shared/header" %>
+<h2>見積編集ページ</h2>
+<ul>
+    <li><%= @client.cli_last_name %></li>
+    <li><%= @client.cli_first_name %></li>
+</ul>
+<%= form_with model: @project, url: user_client_project_path(current_user.id,client_id:@client.id), local: true do |f| %>
+      <%= render 'shared/error_messages', model: f.object %>
+      
+  <div class="field">
+    <%= f.label :pro_day %> <em></em><br />
+    <%= f.text_field :pro_day, autofocus: true, placeholder:"作成日"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :pro_number %> <em></em><br />
+    <%= f.text_field :pro_number, placeholder:"見積番号"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :pro_name %> <em></em><br />
+    <%= f.text_field :pro_name, placeholder:"件名"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :pro_info %> <em></em><br />
+    <%= f.text_area :pro_info, placeholder:"備考"%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "変更" %>
+  </div>
+<% end %>

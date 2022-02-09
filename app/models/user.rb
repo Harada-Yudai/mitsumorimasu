@@ -10,5 +10,5 @@ class User < ApplicationRecord
   validates :phone_num , presence: true
 
   has_many :clients
-  # has_many :projects
+  has_many :projects
 end

@@ -22,7 +22,7 @@
       <% @clients.each do |client| %>
         <li>
           <div>
-            <%= link_to client.cli_last_name + client.cli_last_name + client.cli_phone_num,  user_clients_path(current_user.id,id:client.id), class:"" %>
+            <%= link_to client.cli_last_name + client.cli_last_name + client.cli_phone_num,  user_clients_path(current_user.id,client_id:client.id), class:"" %>
           </div>
         </li>
       <% end %>
