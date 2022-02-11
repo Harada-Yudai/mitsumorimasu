@@ -1,6 +1,27 @@
- テーブル設計
+# READ ME
+## アプリケーション名
+みつもります
 
-## users テーブル
+## アプリケーション概要
+取引先毎に見積を管理できます
+
+## URL
+
+## テスト用アカウント
+
+## 利用方法
+
+## 目指した問題解決
+
+## 洗い出した要件
+
+## 実装した機能についての画像やGIFおよびその説明
+
+## 実装予定の機能
+
+## データベース設計
+
+### users テーブル
 
 | Column                     | Type   | Options                   |
 | -------------------------- | ------ | ------------------------- |
@@ -20,7 +41,7 @@
 - has_many :clients
 - has_many :projects
 
-## clients テーブル
+### clients テーブル
 
 | Column                     | Type        | Options                         |
 | -------------------------- | ----------- | ------------------------------- |
@@ -40,33 +61,37 @@
 - has_many :projects
 - belongs_to :user
 
-## projects テーブル
+### projects テーブル
 
 | Column                     | Type        | Options                         |
 | -------------------------- | ----------- | ------------------------------- |
 | pro_day                    | string      | null: false                     |
 | pro_number                 | string      | null: false                     |
 | pro_name                   | string      | null: false                     |
-| pro_info                   | string      |                                 |
+| pro_info                   | text        |                                 |
 | user                       | references  | null: false, foreign_key: true  |
 | client                     | references  | null: false, foreign_key: true  |
 
 ### Association
 
-- has_many :goods
+- has_many :items
 - belongs_to :user
 - belongs_to :client
 
-## goods テーブル
+### items テーブル
 
-| Column                     | Type        | Options                         |
-| -------------------------- | ----------- | ------------------------------- |
-| gd_name                    | string      | null: false                     |
-| gd_price                   | string      | null: false                     |
-| gd_amount                  | string      | null: false                     |
-| gd_info                    | string      |                                 |
-| project                    | references  | null: false, foreign_key: true  |
+| Column                       | Type        | Options                         |
+| ---------------------------- | ----------- | ------------------------------- |
+| item_name                    | string      | null: false                     |
+| item_price                   | string      | null: false                     |
+| item_amount                  | string      | null: false                     |
+| item_info                    | text        |                                 |
+| project                      | references  | null: false, foreign_key: true  |
 
 ### Association
 
 - belongs_to :project
+
+## ローカルでの動作方法
+
+

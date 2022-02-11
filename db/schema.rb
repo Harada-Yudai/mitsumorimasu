@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_03_131737) do
+ActiveRecord::Schema.define(version: 2022_02_09_124503) do
 
   create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "cli_email"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 2022_02_03_131737) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_clients_on_user_id"
+  end
+
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "item_name", null: false
+    t.string "item_price", null: false
+    t.string "item_amount", null: false
+    t.text "item_info"
+    t.bigint "project_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_items_on_project_id"
   end
 
   create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -62,6 +73,7 @@ ActiveRecord::Schema.define(version: 2022_02_03_131737) do
   end
 
   add_foreign_key "clients", "users"
+  add_foreign_key "items", "projects"
   add_foreign_key "projects", "clients"
   add_foreign_key "projects", "users"
 end
