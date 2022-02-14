@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark bg-dark flex-nowrap">
   <a class="navbar-brand">
-    <img src="logo.png" alt="ロゴ画像" width="130" height="40" class="">
+    <img src="/assets/logo.png" alt="ロゴ画像" width="130" height="40" class="">
   </a>
   <% if user_signed_in? %>
     <div class="btn-toolbar flex-nowrap" role="toolbar" aria-label="Toolbar with button groups">
@@ -13,4 +13,4 @@
       <%= link_to '新規登録', new_user_registration_path, class:"btn btn-secondary text-nowrap" %>
     </div>
   <% end %>
-</nav
+</nav>
