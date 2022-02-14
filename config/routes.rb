@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :edit, :update] do
     resources :clients, only: [:index, :new, :create, :edit, :update] do
       resources :projects, only: [:new, :create, :edit, :update] do
-        resources :projects, only: [:new, :create, :edit, :update]
+        resources :items, only: [:new, :create, :edit, :update]
 
       end
     end
