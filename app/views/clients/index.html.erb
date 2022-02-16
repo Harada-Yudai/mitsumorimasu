@@ -12,25 +12,27 @@
     </div>
   <%else%>
     <div class="row flex-nowrap overflow-auto mx-2" >
-      <% @projects.each do |project| %>
+      <% @projects.each do |projects| %>
+      
         <div class="mx-2">
           <div class="card" style="width: 20rem; height: 7rem;">
             <div class="card-body">
               <h5 class="">
-                <%= project.pro_name %>
+                <%= projects.pro_name %>
               </h5>
               <div class="d-flex flex-row">
                 <div>
                   <div>
-                    <%= project.created_at.strftime('%Y/%m/%d')%>
+                    <%= projects.created_at.strftime('%Y/%m/%d')%>
                   </div>
                   <div>
-                    <%= project.pro_number %>
+                    <%= projects.pro_number %>
+                    <%= projects.id %>
                   </div>
                 </div>
                 <div class="pl-4 py-2  d-flex">
-                  <%= link_to '詳細表示', "", class:"btn btn-primary " %>
-                  <%= link_to '編集',edit_user_client_project_path(current_user.id, client_id:@client.id, id:project.id) , class:"btn btn-success ml-2 " %>
+                  <%= link_to '詳細表示', user_clients_path(current_user.id, client_id:@client.id, project_id:projects.id), class:"btn btn-primary ", id:"project_#{projects.id}",value: projects.id %>
+                  <%= link_to '編集',edit_user_client_project_path(current_user.id, client_id:@client.id, id:projects.id) , class:"btn btn-success ml-2 " %>
                 </div>
               </div>
             </div>
@@ -41,48 +43,61 @@
   <%end%>
 </div>
 
-
-<span class="d-flex mx-2">
-  <div class="text-nowrap ">
-  <%= link_to '印刷用', "", class:"my-1 mx-2 btn btn-secondary text-nowrap" %>
-  <%= link_to '商品追加',"", class:"my-1 mx-2 btn btn-secondary text-nowrap" %>
-  <%= link_to '商品編集',"", class:"my-1 mx-2 btn btn-secondary text-nowrap" %>
+<% if @project.blank? %>
+  <div　class="mx-3"> 
+    見積を選択してください
   </div>
-  <div class="d-flex"> 
-    <h3 class="bg-info my-1 mx-2 py-1 px-2 text-nowrap" style="height:40px;">
-    件名：見積６
-    </h3>
-    <h3 class="bg-info my-1 mx-5 py-1 px-2 text-nowrap" style="height:40px;">
-    合計金額：¥100000
-    </h3>
-    <h3 class="bg-info my-1 mx-2 py-1 px-2 text-nowrap" style="height:40px;">
-    No.0000xxxxxx
-    </h3>
-  </div>
-</span>  
-<div class="mx-3">
-  <div class="d-flex d-flex justify-content-start">
+<%else%>
+  <span class="d-flex mx-2">
     <div class="text-nowrap ">
-      <button type="button" class="d-flex text-nowrap justify-content-between rounded-pill border border-dark list-group-item list-group-item-action" style="width:220px;">
-        <div>商品1</div>
-        <div>¥1000</div>
-      </button>
-      <button type="button" class="my-2 d-flex text-nowrap justify-content-between rounded-pill border border-dark list-group-item list-group-item-action" style="width:220px;">
-        <div>商品2</div>
-        <div>¥2000</div>
-      </button>
-      <button type="button" class="my-2 d-flex text-nowrap justify-content-between rounded-pill border border-dark list-group-item list-group-item-action" style="width:220px;">
-        <div>商品3</div>
-        <div>¥3000</div>
-      </button>
-      <button type="button" class="my-2 d-flex text-nowrap justify-content-between rounded-pill border border-dark list-group-item list-group-item-action" style="width:220px;">
-        <div>商品4</div>
-        <div>¥4000</div>
-      </button>
+    <%= link_to '印刷用', "", class:"my-1 mx-2 btn btn-secondary text-nowrap" %>
+    <%= link_to '商品追加',new_user_client_project_item_path(client_id:@client.id, project_id:@project.id), class:"my-1 mx-2 btn btn-secondary text-nowrap" %>
+    <%# <%= link_to '商品編集', edit_user_client_project_item_path(current_user.id, client_id:@client.id, project_id:@project.id, id:@item.id), class:"my-1 mx-2 btn btn-secondary text-nowrap" %> 
     </div>
-    <div class="mx-2 text-nowrap bg-success border border-dark" style="width:100%; height:500px;">
-      <%= render "shared/goods_detail" %>
+    <div class="d-flex mx-2"> 
+      <h3 class="bg-info my-1 mx-4 py-1 text-nowrap" style="height:40px;">
+      <%= "件名：#{@project.pro_name}" %>
+      </h3>
+      <h3 class="bg-info my-1 mx-5 py-1 px-2 text-nowrap" style="height:40px;">
+      <% all_price = 0 %>  
+      <% @items.each do |item| %>
+        <% all_price = all_price + item.item_price %>
+      <%end%>
+      <%= "合計金額：#{all_price}円" %>
+      </h3>
+      <h3 class="bg-info my-1 mx-2 py-1 px-2 text-nowrap" style="height:40px;">
+      <%= "見積No：#{@project.pro_number}" %>
+      </h3>
     </div>
-  </div>
-</div>
-</div>
+  </span>  
+  <% if @project.items.ids.blank? %>
+    <div　class="mx-3"> 
+      商品を追加してください
+    </div>
+  <%else%>
+    <div class="mx-3">
+      <div class="d-flex d-flex justify-content-start">
+        <div class="text-nowrap ">
+          <% @items.each do |item| %>
+            <%= link_to item.item_name, "#", class:" mb-1 text-nowrap rounded-pill border border-dark list-group-item list-group-item-action", style:"width:220px;"%>
+          <%end%>
+        </div>
+        <div class="mx-2 text-nowrap bg-success border border-dark" style="width:100%; height:500px;">
+          <%# <%= link_to '商品編集', edit_user_client_project_item_path(current_user.id, client_id:@client.id, project_id:@project.id, id:@item.id), class:"my-1 mx-2 btn btn-secondary text-nowrap" %> %>
+          <div>
+            日付
+          </div>
+          <div>
+            No.0000xxxx
+          </div>
+          <div>
+            名称
+          </div>
+          <div>
+            備考
+          </div>
+        </div>
+      </div>
+    </div>
+  <%end%>
+<%end%>

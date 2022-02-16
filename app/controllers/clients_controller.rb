@@ -4,6 +4,15 @@ class ClientsController < ApplicationController
   def index
     @client = Client.find(params[:client_id])
     @projects = Project.where(client_id: params[:client_id]).order('created_at DESC')
+    if params[:project_id].blank?
+    else
+      @project = Project.find(params[:project_id])
+      @items = Item.where(project_id: params[:project_id]).order('created_at DESC')
+      if params[:item_id].blank?
+      else
+        # @items = Item.where(project_id: params[:project_id])
+      end
+    end
   end
 
   def new
