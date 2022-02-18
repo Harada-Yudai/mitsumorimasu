@@ -10,13 +10,14 @@ class ClientsController < ApplicationController
       @items = Item.where(project_id: params[:project_id]).order('created_at DESC')
       if params[:item_id].blank?
       else
-        # @items = Item.where(project_id: params[:project_id])
+        @item = Item.find(params[:item_id])
       end
     end
   end
 
   def new
     @client = Client.new
+
   end
 
   def create
@@ -29,13 +30,13 @@ class ClientsController < ApplicationController
   end
 
   def edit
-    @client = Client.find(params[:client_id])
+    @client = Client.find(params[:id])
   end
 
   def update
     @client = Client.find(params[:id])
     @client.update(client_params)
-    @projects = Project.where(params[:client_id]).order('created_at DESC')
+    @projects = Project.where(client_id: params[:id]).order('created_at DESC')
     if @client.save
       render :index
     else

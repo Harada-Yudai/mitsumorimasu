@@ -5,7 +5,7 @@
     <li><%= @client.cli_first_name %></li>
     <li><%= @project.pro_name %></li>
 </ul>
-<%= form_with model: @item, url: user_client_project_items_path, local: true do |f| %>
+<%= form_with model: @item, url: user_client_project_item_path(project_id:@project.id), local: true do |f| %>
       <%= render 'shared/error_messages', model: f.object %>
       
   <div class="field">
@@ -29,6 +29,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "追加" %>
+    <%= f.submit "変更" %>
   </div>
 <% end %>

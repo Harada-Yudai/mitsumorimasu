@@ -22,6 +22,17 @@ class ItemsController < ApplicationController
     @project = Project.find(params[:project_id])
   end
 
+  def update
+    @item = Item.find(params[:id])
+    @project = Project.find(params[:project_id])
+    @item.update(item_params)
+    if @item.save
+      redirect_to user_clients_path(current_user.id,client_id:@project.client_id,project_id:@project.id,item_id:params[:id])
+    else
+      render :edit
+    end
+  end
+
   private
 
   def item_params
