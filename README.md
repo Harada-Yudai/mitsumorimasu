@@ -6,7 +6,7 @@
 取引先毎に見積を管理できます
 
 ## URL
-
+https://mitsumorimasu.herokuapp.com/
 ## テスト用アカウント
 
 ## 利用方法
@@ -83,8 +83,8 @@
 | Column                       | Type        | Options                         |
 | ---------------------------- | ----------- | ------------------------------- |
 | item_name                    | string      | null: false                     |
-| item_price                   | string      | null: false                     |
-| item_amount                  | string      | null: false                     |
+| item_price                   | integer     | null: false                     |
+| item_amount                  | integer     | null: false                     |
 | item_info                    | text        |                                 |
 | project                      | references  | null: false, foreign_key: true  |
 

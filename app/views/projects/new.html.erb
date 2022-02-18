@@ -4,7 +4,7 @@
     <li><%= @client.cli_last_name %></li>
     <li><%= @client.cli_first_name %></li>
 </ul>
-<%= form_with model: @project, url: user_client_projects_path, local: true do |f| %>
+<%= form_with model: @project, url: user_client_projects_path(object_id), local: true do |f| %>
       <%= render 'shared/error_messages', model: f.object %>
       
   <div class="field">
