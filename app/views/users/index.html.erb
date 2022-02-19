@@ -6,8 +6,6 @@
   <ul>
     <li><%= current_user.last_name %></li>
     <li><%= current_user.first_name %></li>
-    <li><%= current_user.last_kana %></li>
-    <li><%= current_user.first_kana %></li>
     <li><%= current_user.company %></li>
     <li><%= current_user.address %></li>
     <li><%= current_user.phone_num %></li>
@@ -22,7 +20,7 @@
       <% @clients.each do |client| %>
         <li>
           <div>
-            <%= link_to client.cli_last_name + client.cli_last_name + client.cli_phone_num,  user_clients_path(current_user.id,client_id:client.id), class:"" %>
+            <%= link_to client.cli_last_name + client.cli_first_name + client.cli_phone_num,  user_clients_path(current_user.id,client_id:client.id), class:"" %>
           </div>
         </li>
       <% end %>
