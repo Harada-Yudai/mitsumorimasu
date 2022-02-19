@@ -3,15 +3,15 @@
   <div class="d-flex mb-2">
     <div class="d-flex flex-column">
       <div class="py-1">
-        <%= link_to 'お客様情報確認・変更', edit_user_client_path(current_user.id,id:@client.id), class:" mx-2 btn btn-secondary text-nowrap" %>
+        <%= link_to 'お客様情報確認・変更', edit_user_client_path(current_user.id,id:@client.id), class:" mx-2 btn btn-success text-nowrap border border-dark" %>
       </div>
       <div>
-        <%= link_to '新規見積追加', new_user_client_project_path(current_user.id,client_id:@client.id), class:"my-1 mx-2 btn btn-secondary text-nowrap" %>
+        <%= link_to '新規見積追加', new_user_client_project_path(current_user.id,client_id:@client.id), class:"my-1 mx-2 btn btn-secondary text-nowrap border border-dark" %>
       </div>
     </div>
-    <div class="pt-1 mt-1 ml-4 d-flex flex-column " style="width:82%; height:85px;">
-          <h5><%= "#{@client.cli_company}"+"　"+"#{@client.cli_last_name}"+" "+"#{@client.cli_last_name}"+"　"+"様"%></h5>
-          <div class="overflow-auto border border-dark" style="height:100px;"><%= @client.cli_info %></div>
+    <div class="pt-1 mt-1 ml-4 d-flex flex-column " style="width:83%; height:85px;">
+          <h5 class="font-weight-bold"><%= "#{@client.cli_company}"+"　"+"#{@client.cli_last_name}"+" "+"#{@client.cli_last_name}"+"　"+"様"%></h5>
+          <div class="overflow-auto border border-dark rounded-lg" style="height:100px;"><%= @client.cli_info %></div>
     </div>
   </div>
   <% if @projects.blank? %>
@@ -22,9 +22,9 @@
     <div class="row flex-nowrap overflow-auto mx-1" >
       <% @projects.each do |projects| %>
         <div class="mx-2">
-          <div class="card" style="width: 20rem; height: 7rem;">
+          <div class="card border border-dark" style="width: 20rem; height: 7rem;">
             <div class="card-body">
-              <h5 class="">
+              <h5 class="font-weight-bold">
                 <%= projects.pro_name %>
               </h5>
               <div class="d-flex flex-row">
@@ -38,11 +38,11 @@
                   </div>
                 </div>
                 <div class="pl-4 py-2  d-flex">
-                  <%= link_to '詳細表示', user_clients_path(current_user.id, client_id:@client.id, project_id:projects.id), class:"btn btn-primary ",value: projects.id %>
+                  <%= link_to '詳細表示', user_clients_path(current_user.id, client_id:@client.id, project_id:projects.id), class:"btn btn-primary border border-dark",value: projects.id %>
                   <% if @project.blank? %>
                   <%else%>
                     <% if projects.id == @project.id %>
-                      <%= link_to '編集',edit_user_client_project_path(current_user.id, client_id:@client.id, id:projects.id) , class:"btn btn-success ml-2 " %>
+                      <%= link_to '編集',edit_user_client_project_path(current_user.id, client_id:@client.id, id:projects.id) , class:"btn btn-success ml-2 border border-dark" %>
                       <% end %>
                   <% end %>
                 </div>
@@ -61,7 +61,7 @@
   </div>
 <%else%>
   <div class = "">
-    <div class=" mx-3 my-1 border border-dark overflow-auto" style="width:97%; height:75px;"> 
+    <div class=" mx-3 my-1 border border-dark overflow-auto rounded-lg" style="width:97%; height:75px;"> 
       <% if @project.pro_info.blank? %>
       <%else%>
         <%= @project.pro_info %>
@@ -70,25 +70,25 @@
   </div>
   <div class="d-flex mx-2 ">
     <div class="text-nowrap "　style="width:200px;">
-      <%= link_to '印刷用', "", class:" mx-2 btn btn-secondary text-nowrap" %>
-      <%= link_to '商品追加',new_user_client_project_item_path(client_id:@client.id, project_id:@project.id), class:" mx-2 btn btn-secondary text-nowrap" %>
+      <%= link_to '印刷用', "", class:" mx-2 btn btn-warning text-nowrap border border-dark" %>
+      <%= link_to '商品追加',new_user_client_project_item_path(client_id:@client.id, project_id:@project.id), class:" mx-2 btn btn-secondary text-nowrap border border-dark" %>
       <% if @item.blank? %>
       <%else%>
-        <%= link_to '商品編集', edit_user_client_project_item_path(current_user.id, client_id:@client.id, project_id:@project.id, id:@item.id), class:"mx-2 btn btn-success text-nowrap" %>
+        <%= link_to '商品編集', edit_user_client_project_item_path(current_user.id, client_id:@client.id, project_id:@project.id, id:@item.id), class:"border border-dark mx-2 btn btn-success text-nowrap" %>
       <% end %>
     </div>
     <div class="d-flex mx-2 text-nowrap justify-content-start"> 
-      <h5 class="bg-inf mx-4 pt-2 text-nowrap" style="width:400px; height:35px;">
+      <h5 class="bg-inf mx-4 pt-2 text-nowrap font-weight-bold" style="width:400px; height:35px;">
       <%= "件名：#{@project.pro_name}" %>
       </h5>
-      <h5 class="bg-in mx-5 pt-2 px-2 text-nowrap" style="width:200px; height:35px;">
+      <h5 class="bg-in mx-5 pt-2 px-2 text-nowrap font-weight-bold" style="width:200px; height:35px;">
       <% all_price = 0 %>  
       <% @items.each do |item| %>
         <% all_price = all_price + item.item_price %>
       <%end%>
       <%= "合計金額：#{all_price}円" %>
       </h5>
-      <h5 class="bg-inf mx-2 pt-2 px-2 text-nowrap" style="width:200px; height:35px;">
+      <h5 class="bg-inf mx-2 pt-2 px-2 text-nowrap font-weight-bold" style="width:200px; height:35px;">
       <%= "見積No：#{@project.pro_number}" %>
       </h5>
     </div>
@@ -102,10 +102,10 @@
       <div class="d-flex d-flex justify-content-start">
         <div class="text-nowrap ">
           <% @items.each do |item| %>
-            <%= link_to item.item_name, user_clients_path(current_user.id, client_id:@client.id, project_id:@project.id, item_id:item.id), class:"mb-1 text-nowrap justify-content-beteen rounded-pill border border-dark list-group-item list-group-item-action", style:"width:220px;" %>
+            <%= link_to item.item_name, user_clients_path(current_user.id, client_id:@client.id, project_id:@project.id, item_id:item.id), class:"mb-1 text-nowrap justify-content-beteen rounded-pill border border-dark list-group-item list-group-item-action font-weight-bold", style:"width:220px;" %>
           <%end%>
         </div>
-        <div class="mx-2 text-nowrap bg-success border border-dark" style="width:100%; height:500px;">
+        <div class="mx-2 text-nowrap border border-dark rounded-lg" style="width:100%; height:500px;">
           <% if @item.blank? %>
             <div　class="mx-3"> 
               商品を選択してください
