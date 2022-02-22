@@ -1,34 +1,44 @@
 <%= render "shared/header" %>
-<h2>商品編集ページ</h2>
-<ul>
-    <li><%= @client.cli_last_name %></li>
-    <li><%= @client.cli_first_name %></li>
-    <li><%= @project.pro_name %></li>
-</ul>
-<%= form_with model: @item, url: user_client_project_item_path(project_id:@project.id), local: true do |f| %>
+<div class="d-flex justify-content-center mt-3 ">
+  <h1 class="border-bottom border-danger text-center font-weight-bold" style="width:400px;">商品情報編集</h1>
+</div>
+<div class="d-flex justify-content-center mt-1">
+  <h4 class="font-weight-bold mt-1"><%= "#{@client.cli_company}"+"　"+"#{@client.cli_last_name}"+" "+"#{@client.cli_first_name}"+"　"+"様"%></h4>
+</div>
+<div class="d-flex justify-content-center">
+  <h4 class="font-weight-bold mt-1"><%=@project.pro_name%></h4>
+</div>
+
+<div class="justify-content-center " style="height:90%;">
+  <div style="height:100%; " class="bg-light border border-dark container rounded-lg  py-2 justify-content-center ">
+    <%= form_with model: @item, url: user_client_project_item_path(project_id:@project.id), local: true do |f| %>
       <%= render 'shared/error_messages', model: f.object %>
-      
-  <div class="field">
-    <%= f.label :item_name %> <em></em><br />
-    <%= f.text_field :item_name, autofocus: true, placeholder:"商品名"%>
-  </div>
+          
+      <div class="field ">
+        <%= f.label :商品名 %> <em></em><br />
+        <%= f.text_field :item_name, autofocus: true, placeholder:"商品名",style:"width:40%;"%>
+      </div>
 
-  <div class="field">
-    <%= f.label :item_price %> <em></em><br />
-    <%= f.text_field :item_price, placeholder:"価格"%>
-  </div>
+      <div class="field">
+        <%= f.label :価格 %> <em></em><br />
+        <%= f.text_field :item_price, placeholder:"価格"%>
+        円
+      </div>
 
-  <div class="field">
-    <%= f.label :item_amount %> <em></em><br />
-    <%= f.text_field :item_amount, placeholder:"数量"%>
-  </div>
+      <div class="field">
+        <%= f.label :数量 %> <em></em><br />
+        <%= f.text_field :item_amount, placeholder:"数量"%>
+        個
+      </div>
 
-  <div class="field">
-    <%= f.label :item_info %> <em></em><br />
-    <%= f.text_area :item_info, placeholder:"備考"%>
-  </div>
+      <div class="my-2" >
+        <%= f.label :備考 %> <em></em><br />
+        <%= f.text_area :item_info, placeholder:"備考", style:"width:100%;"%>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "変更" %>
+      <div class="mt-3 d-flex justify-content-center">
+        <%= f.submit "更新",class:"btn btn-primary text-nowrap btn-lg border border-dark"%>
+      </div>
+    <% end %>
   </div>
-<% end %>
+<div>

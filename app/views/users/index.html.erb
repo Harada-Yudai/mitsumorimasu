@@ -1,85 +1,88 @@
 <%= render "shared/header" %> 
-<div class="d-flex justify-content-center mt-3 ">
-  <h1 class="border-bottom border-danger text-center" style="width:300px;">マイページ</h1>
-</div>
-<div class="container my-2">
-  <% if user_signed_in? %>
+
+<% if user_signed_in? %>
+  <div class="d-flex justify-content-center mt-3 ">
+    <h1 class="border-bottom border-danger text-center font-weight-bold" style="width:300px;">マイページ</h1>
+  </div>
+  <div class="container my-2 py-2 bg-light border border-dark rounded-lg">
     <div>
-      <%= link_to '個人情報編集', edit_user_registration_path, class:"mr-3 btn btn-secondary text-nowrap" %>
+      <%= link_to 'プロフィール編集', edit_user_registration_path, class:"mr-3 btn btn-success text-nowrap border border-dark" %>
     </div>
     <h5>
-      <div class="d-flex ml-5">
-        <div>
-          <div class="my-2">
-           会社名
-          </div>
-          <div class="my-2">
-            住所
-          </div>
-          <div class="my-2">
-            名前
-          </div>
-          <div class="my-2">
-            電話番号
-          </div>
+    <div class="d-flex ml-5">
+      <div>
+        <div class="my-2">
+          会社名
         </div>
-        <div>
-          <div class="my-2">
-          　：　
-          </div>
-          <div class="my-2">
-          　：　
-          </div>
-          <div class="my-2">
-          　：　
-          </div>
-          <div class="my-2">
-          　：　
-          </div>
+        <div class="my-2">
+          住所
         </div>
-        <div>
-          <div class="my-2">
-            <%= current_user.company %>
-          </div>
-          <div class="my-2">
-            <%= current_user.address %>
-          </div>
-          <div class="my-2">
-            <%= "#{current_user.last_name}"+" "+"#{current_user.first_name}" %>
-          </div>
-          <div class="my-2">
-            <%= current_user.phone_num %>
-          </div>
+        <div class="my-2">
+          名前
+        </div>
+        <div class="my-2">
+          電話番号
         </div>
       </div>
-      <div class="px-1 mx-5 overflow-auto border border-dark rounded-lg" style="height:100px;">
-        <%= current_user.info %>
+      <div>
+        <div class="my-2">
+        　：　
+        </div>
+        <div class="my-2">
+        　：　
+        </div>
+        <div class="my-2">
+        　：　
+        </div>
+        <div class="my-2">
+        　：　
+        </div>
       </div>
+      <div>
+        <div class="my-2">
+          <%= current_user.company %>
+        </div>
+        <div class="my-2">
+          <%= current_user.address %>
+        </div>
+        <div class="my-2">
+          <%= "#{current_user.last_name}"+" "+"#{current_user.first_name}" %>
+        </div>
+        <div class="my-2">
+          <%= current_user.phone_num %>
+        </div>
+      </div>
+    </div>
+    <div class="px-1 mx-5 overflow-auto border border-dark rounded-lg" style="height:100px;">
+      <%= current_user.info %>
+    </div>
+  </h5>
+  <div>
+    <%= link_to '取引先登録', new_user_client_path(current_user.id), class:"mr-3 btn btn-primary text-nowrap border border-dark" %>
+  </div>
+  <div class="ml-4">
+    <h5>
+      <ul>
+        <% @clients.each do |client| %>
+          <li>
+            <div class="my-1">
+              <%= link_to "#{client.cli_company}"+"　"+"#{client.cli_last_name}"+" "+"#{client.cli_first_name}",  user_clients_path(current_user.id,client_id:client.id), class:"" %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
     </h5>
-    <div>
-      <%= link_to '取引先追加', new_user_client_path(current_user.id), class:"mr-3 btn btn-secondary text-nowrap" %>
+  </div>
+<% else %>
+  <div class="mr-3 justify-content-center " style="height:300px;">
+    <div class="d-flex justify-content-center mt-3 ">
+      <h1 class="border-bottom border-danger text-center font-weight-bold" style="width:500px;">ログインしてください</h1>
     </div>
-    <div class="ml-4">
-      <h5>
-        <ul>
-          <% @clients.each do |client| %>
-            <li>
-              <div class="my-1">
-                <%= link_to "#{client.cli_company}"+"　"+"#{client.cli_last_name}"+" "+"#{client.cli_first_name}",  user_clients_path(current_user.id,client_id:client.id), class:"" %>
-              </div>
-            </li>
-          <% end %>
-        </ul>
-      </h5>
+    <div style="height:50%;" class="bg-light border border-dark rounded-lg container my-2 py-2 d-flex align-items-center justify-content-center ">
+        <%= link_to 'ログイン', new_user_session_path, class:"mx-5 btn btn-primary text-nowrap btn-lg" %>
+        <%= link_to '新規登録', new_user_registration_path, class:"mx-5 btn btn-primary text-nowrap btn-lg" %>
     </div>
-  <% else %>
-    <div class="mr-3 ">
-      <h4>
-      ログインしてください
-      </h4>
-      <%= link_to 'ログイン', new_user_session_path, class:"mr-3 btn btn-primary text-nowrap" %>
-      <%= link_to '新規登録', new_user_registration_path, class:"btn btn-primary text-nowrap" %>
-    </div>
-  <% end %>
+  </div>
+<% end %>
 </div>
 
