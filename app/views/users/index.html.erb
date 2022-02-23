@@ -61,9 +61,6 @@
     <%= link_to 'お客様登録', new_user_client_path(current_user.id), class:"mr-3 btn btn-primary text-nowrap border border-dark" %>
   </div>
   <% if @clients.blank? %>
-    <div　class="">
-    <h5 class="ml-5 mt-2">お客様情報を登録してください</h5>
-    </div>
   <%else%>
     <div class="ml-4">
       <h5>

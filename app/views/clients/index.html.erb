@@ -1,5 +1,5 @@
 <%= render "shared/header" %>
-<div class="mx-2 mt-1 fs-6 bg-light">
+<div class="mx-2 mt-1 pb-2 fs-6 bg-light">
   <div class="d-flex mb-2">
     <div class="d-flex flex-column">
       <% if @project.blank? %>
@@ -25,9 +25,6 @@
     </div>
   </div>
   <% if @projects.blank? %>
-    <div class="ml-3">
-    <h5>御見積情報を登録してください</h5>
-    </div>
   <%else%>
     <div class="row flex-nowrap ml-0" >
       <% @projects.each do |projects| %>
@@ -66,9 +63,6 @@
       <% end %>
     </div>
     <% if @project.blank? %>
-      <div class="mx-4"> 
-        見積を選択してください
-      </div>  
     <%else%>
       <div class = "mr-3">
         <div class=" ml-2 my-1 pl-1 border border-dark overflow-auto rounded-lg bg-white" style="width:100%; height:75px;"> 
