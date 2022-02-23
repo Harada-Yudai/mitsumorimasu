@@ -31,6 +31,13 @@ class ClientsController < ApplicationController
 
   def edit
     @client = Client.find(params[:id])
+    if params[:project_id].blank?
+    elsif params[:item_id].blank?
+      @project = Project.find(params[:project_id])
+    else
+      @project = Project.find(params[:project_id])
+      @item = Item.find(params[:item_id])
+    end
   end
 
   def update
@@ -38,10 +45,16 @@ class ClientsController < ApplicationController
     @client.update(client_params)
     @projects = Project.where(client_id: params[:id]).order('created_at DESC')
     if @client.save
-      render :index
+      redirect_to  user_clients_path(client_id: params[:id],project_id: params[:project_id],item_id: params[:item_id])
     else
       render :edit
     end
+  end
+
+  def destroy
+    client = Client.find(params[:id])
+    client.destroy
+    redirect_to root_path(current_user.id)
   end
 
   private

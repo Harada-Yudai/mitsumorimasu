@@ -1,0 +1,37 @@
+<div class="d-flex">   
+  <div class="mr-5 my-2" style="width:40%;">
+    <%= f.label :姓%> <em></em><br />
+    <%= f.text_field :cli_last_name, autofocus: true, placeholder:"山田"%>
+  </div>
+  <div class="my-2 mr-5" style="width:40%;">
+    <%= f.label :名 %> <em></em><br />
+    <%= f.text_field :cli_first_name, placeholder:"太郎"%>
+  </div>
+</div>
+<div class="d-flex">        
+  <div class="my-2 mr-5" style="width:40%;">
+    <%= f.label :会社名 %> <em></em><br />
+    <%= f.text_field :cli_company, placeholder:"◯◯株式会社",style:"width:100%;"%>
+  </div>
+  <div class="my-2 mr-5" style="width:40%;">
+    <%= f.label :電話番号 %> <em></em><br />
+    <%= f.text_field :cli_phone_num, placeholder:"123-4567-8910"%>
+  </div>
+</div>
+<div class="my-2" >
+  <%= f.label :住所 %> <em></em><br />
+  <%= f.text_field :cli_address, placeholder:"住所", style:"width:100%;"%>
+</div>
+<div class="my-2" >
+  <%= f.label :備考 %> <em></em><br />
+  <%= f.text_area :cli_info, placeholder:"", style:"width:100%;"%>
+</div>
+
+<div class="my-2">
+  <%= f.label :メールアドレス %><br />
+  <%= f.email_field :cli_email, autofocus: true, autocomplete: "email", placeholder:"◯◯◯@example.com",style:"width:40%;"%>
+</div>
+
+<div class="actions mt-3 d-flex justify-content-center"> 
+  <%= f.submit "更新" ,class:"btn btn-primary text-nowrap btn-lg border border-dark"%>
+</div>

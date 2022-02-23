@@ -40,8 +40,6 @@ ActiveRecord::Schema.define(version: 2022_02_09_124503) do
   end
 
   create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "pro_day", null: false
-    t.string "pro_number", null: false
     t.string "pro_name", null: false
     t.text "pro_info"
     t.bigint "user_id", null: false
