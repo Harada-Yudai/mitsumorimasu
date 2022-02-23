@@ -1,30 +1,40 @@
 <%= render "shared/header" %>
-<div class="mx-2 mt-1 fs-6">
+<div class="mx-2 mt-1 fs-6 bg-light">
   <div class="d-flex mb-2">
     <div class="d-flex flex-column">
-      <div class="py-1 ml-0">
-        <%= link_to 'お客様情報確認・編集', edit_user_client_path(current_user.id,id:@client.id), class:" mx-2 btn btn-success text-nowrap border border-dark" %>
-      </div>
+      <% if @project.blank? %>
+        <div class="py-1 ml-0">
+          <%= link_to 'お客様情報確認', edit_user_client_path(current_user.id,id:@client.id), class:" mx-2 btn btn-success text-nowrap border border-dark" %>
+        </div>
+      <%elsif @item.blank? %>
+        <div class="py-1 ml-0">
+          <%= link_to 'お客様情報確認', edit_user_client_path(current_user.id,id:@client.id,project_id:@project.id), class:" mx-2 btn btn-success text-nowrap border border-dark" %>
+        </div>
+      <%else%>
+        <div class="py-1 ml-0">
+          <%= link_to 'お客様情報確認', edit_user_client_path(current_user.id,id:@client.id,project_id:@project.id,item_id:@item.id), class:" mx-2 btn btn-success text-nowrap border border-dark" %>
+        </div>
+      <%end%>
       <div class="ml-0">
-        <%= link_to '新規御見積追加', new_user_client_project_path(current_user.id,client_id:@client.id), class:"my-1 mx-2 btn btn-primary text-nowrap border border-dark" %>
-      </div>
+          <%= link_to '新規御見積追加', new_user_client_project_path(current_user.id,client_id:@client.id), class:"my-1 mx-2 btn btn-primary text-nowrap border border-dark" %>
+        </div>
     </div>
-    <div class="pt-1 mt-1 ml-2 mr-1 d-flex flex-column " style="width:100%; height:85px;">
+    <div class="pt-1 mt-1 ml-1 mr-2 d-flex flex-column " style="width:100%; height:85px;">
           <h5 class="font-weight-bold"><%= "#{@client.cli_company}"+"　"+"#{@client.cli_last_name}"+" "+"#{@client.cli_first_name}"+"　"+"様"%></h5>
-          <div class="pl-1 overflow-auto border border-dark rounded-lg " style="height:100px;"><%= @client.cli_info %></div>
+          <div class="pl-1 overflow-auto border border-dark rounded-lg bg-white" style="height:100px;"><%= @client.cli_info %></div>
     </div>
   </div>
   <% if @projects.blank? %>
-    <div　class="">
-    見積実績はありません
+    <div class="ml-3">
+    <h5>御見積情報を登録してください</h5>
     </div>
   <%else%>
-    <div class="row flex-nowrap overflow-auto ml-0" >
+    <div class="row flex-nowrap ml-0" >
       <% @projects.each do |projects| %>
         <div class="mx-2">
           <div class="card border border-dark" style="width: 22rem; height: 7rem;">
             <div class="card-body">
-              <h5 class="font-weight-bold">
+              <h5 class="font-weight-bold text-truncate">
                 <%= projects.pro_name %>
               </h5>
               <div class="d-flex flex-row">
@@ -33,17 +43,20 @@
                     <%= projects.created_at.strftime('%Y/%m/%d')%>
                   </div>
                   <div>
-                    <%= projects.pro_number %>
-                    <%= projects.id %>
+                    No：xxxx0000
                   </div>
                 </div>
                 <div class="pl-4 py-2  d-flex">
-                  <%= link_to '表示', user_clients_path(current_user.id, client_id:@client.id, project_id:projects.id), class:"btn btn-warning border border-dark",value: projects.id %>
+                  <%= link_to '選択', user_clients_path(current_user.id, client_id:@client.id, project_id:projects.id), class:"btn btn-warning border border-dark",value: projects.id %>
                   <% if @project.blank? %>
                   <%else%>
                     <% if projects.id == @project.id %>
-                      <%= link_to '確認・編集',edit_user_client_project_path(current_user.id, client_id:@client.id, id:projects.id) , class:"btn btn-success ml-2 border border-dark" %>
-                      <% end %>
+                      <%if @item.blank? %>
+                      <%= link_to '確認',edit_user_client_project_path(current_user.id, client_id:@client.id, id:projects.id) , class:"btn btn-success ml-2 border border-dark" %>
+                      <%else%>
+                      <%= link_to '確認',edit_user_client_project_path(current_user.id, client_id:@client.id, id:projects.id, item_id:@item.id) , class:"btn btn-success ml-2 border border-dark" %>
+                      <%end%>
+                    <% end %>
                   <% end %>
                 </div>
               </div>
@@ -57,75 +70,86 @@
         見積を選択してください
       </div>  
     <%else%>
-      <div class = "mr-2">
-        <div class=" ml-1 my-1 pl-1 border border-dark overflow-auto rounded-lg " style="width:100%; height:75px;"> 
+      <div class = "mr-3">
+        <div class=" ml-2 my-1 pl-1 border border-dark overflow-auto rounded-lg bg-white" style="width:100%; height:75px;"> 
           <% if @project.pro_info.blank? %>
           <%else%>
             <%= @project.pro_info %>
           <%end%>
         </div>
       </div>
-      <div class=" border border-dark rounded-lg mx-1 py-1">
+      <div class=" border border-dark rounded-lg mx-2 py-1">
         <div class="d-flex ">
-          <div class="text-nowrap" style="width:320px;">
-            <%= link_to '印刷', "", class:" mx-2 btn btn-warning text-nowrap border border-dark" %>
+          <div class="text-nowrap " style="width:240px;">
+            <% link_to '印刷', "", class:" mx-2 btn btn-warning text-nowrap border border-dark" %>
             <%= link_to '商品追加',new_user_client_project_item_path(client_id:@client.id, project_id:@project.id), class:" mx-2 btn btn-primary text-nowrap border border-dark" %>
-            <% if @item.blank? %>
-            <%else%>
-              <%= link_to '商品編集', edit_user_client_project_item_path(current_user.id, client_id:@client.id, project_id:@project.id, id:@item.id), class:"border border-dark mx-2 btn btn-success text-nowrap" %>
-            <% end %>
           </div>
-          <div class="d-flex mx-2 justify-content-start container"> 
-            <h5 class="mx-4 pt-2 text-nowrap font-weight-bold" style="height:35px;">
+          <div class="d-flex mr-2 justify-content-start" style="width:80%;"> 
+            <h5 class="pt-2 text-nowrap font-weight-bold text-truncate" style="width:50%; height:35px;">
               <%= "件名：#{@project.pro_name}" %>
             </h5>
-            <h5 class="bg-in mx-5 pt-2 px-2 text-nowrap font-weight-bold" style="width:200px; height:35px;">
+            <h5 class="ml-3 pt-2 px-2 text-nowrap font-weight-bold text-truncate" style="width:25%; height:35px;">
               <% all_price = 0 %>  
               <% @items.each do |item| %>
-                <% all_price = all_price + item.item_price %>
+                <% all_price = all_price +(item.item_price * item.item_amount)%>
               <%end%>
-              <%= "合計金額：#{all_price}円" %>
+              <%= "合計金額：#{all_price} 円" %>
             </h5>
-            <h5 class="mx-2 pt-2 px-2 text-nowrap font-weight-bold" style="width:200px; height:35px;">
-              <%= "見積No：#{@project.pro_number}" %>
+            <h5 class="mx-2 pt-2 px-2 text-nowrap font-weight-bold text-truncate" style="width:25%; height:35px;">
+              <%= "No：xxxx0000" %>
             </h5>
           </div>
         </div> 
         <% if @project.items.ids.blank? %>
-          <div class="mx-2"> 
-            商品を追加してください
-          </div>
         <%else%>
-          <div class="ml-2">
+          <div class="ml-2 ">
             <div class="d-flex d-flex justify-content-start">
-              <div class="text-nowrap ">
+              <div class="">
                 <% @items.each do |item| %>
-                  <%= link_to item.item_name, user_clients_path(current_user.id, client_id:@client.id, project_id:@project.id, item_id:item.id), class:"mb-1 text-nowrap justify-content-beteen rounded-pill border border-dark list-group-item list-group-item-action font-weight-bold", style:"width:220px;" %>
+                  <%= link_to user_clients_path(current_user.id, client_id:@client.id, project_id:@project.id, item_id:item.id), class:"mb-1 text-nowrap justify-content-beteen rounded-pill border border-dark list-group-item list-group-item-action font-weight-bold", style:"width:220px;" do %> 
+                    <div class="text-truncate "><%= item.item_name %><br> <%= item.item_price * item.item_amount%> 円</div>
+                  <%end%>
                 <%end%>
               </div>
-              <div class="ml-2 mr-2 text-nowrap border border-dark rounded-lg" style="width:100%; height:500px;">
-                <% if @item.blank? %>
-                  <div class="ml-1"> 
-                    商品を選択してください
-                  </div>  
-                <%else%>
-                  <div>
-                    <%= @item.item_name %>
-                  </div>
-                  <div>
-                    <%= @item.item_price %>
-                  </div>
-                  <div>
-                    <%= @item.item_amount %>
-                  </div>
-                  <div>
-                    <%= @item.item_info %>
-                  </div>
-                <%end%>
+              <% if @item.blank? %> 
+              <%else%>
+                <div class="mx-2  border border-dark rounded-lg bg-white overflow-auto" style="width:100%;">
+                  <div class="mx-2 my-2"> 
+                    <div class="d-flex " style="height:45px;" >
+                      <div class="ml-1 pt-1"style="">
+                        <%= link_to '確認', edit_user_client_project_item_path(current_user.id, client_id:@client.id, project_id:@project.id, id:@item.id), class:"border border-dark mx-2 btn btn-success text-nowrap btn-lg" %>
+                      </div>
+                      <div class="d-flex pt-2 ml-3" style="width:90%;">
+                        <div style="width:30%">
+                          <h2 class=" font-weight-bold text-truncate" >価格：<%= @item.item_price * @item.item_amount%> 円</h2>
+                        </div>
+                        <div class="ml-4"style="width:60%">
+                          <h2 class=" font-weight-bold text-truncate"><%= "商品名："+"#{@item.item_name}" %></h2>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-3 d-flex" style="width:100%;">
+                      <div style="width:110px;">
+                      </div>
+                      <div>
+                        <div class="mx-1"style="width:300px;">
+                          <h4 >単価：<%= @item.item_price %> 円</h4> 
+                        </div>
+                        <div class="mx-1">
+                          <h4>数量：<%= @item.item_amount %> 個</h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="pl-1 overflow-auto border border-dark rounded-lg bg-white" style="height:200px;">
+                      <%= @item.item_info %>
+                    </div>
+                  </div> 
+                </div>
+              <%end%>
               </div>
             </div>
           </div>
-        <%end%>
+        <%end%> 
       </div>
     <%end%>
   <%end%>

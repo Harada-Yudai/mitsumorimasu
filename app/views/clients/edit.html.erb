@@ -6,46 +6,24 @@
 
 <div class="justify-content-center " style="height:90%;">
   <div style="height:100%; " class="bg-light border border-dark container rounded-lg my-2 py-2">
-    <%= form_with model: @client, url: user_client_path(current_user.id), local: true do |f| %>
-       <%= render 'shared/error_messages', model: f.object %>
-
-      <div class="d-flex">   
-        <div class="mr-5 my-2" style="width:40%;">
-          <%= f.label :姓%> <em></em><br />
-          <%= f.text_field :cli_last_name, autofocus: true, placeholder:"山田"%>
-        </div>
-        <div class="my-2 mr-5" style="width:40%;">
-          <%= f.label :名 %> <em></em><br />
-          <%= f.text_field :cli_first_name, placeholder:"太郎"%>
-        </div>
-      </div>
-      <div class="d-flex">        
-        <div class="my-2 mr-5" style="width:40%;">
-          <%= f.label :会社名 %> <em></em><br />
-          <%= f.text_field :cli_company, placeholder:"◯◯株式会社",style:"width:100%;"%>
-        </div>
-        <div class="my-2 mr-5" style="width:40%;">
-          <%= f.label :電話番号 %> <em></em><br />
-          <%= f.text_field :cli_phone_num, placeholder:"123-4567-8910"%>
-        </div>
-      </div>
-      <div class="my-2" >
-        <%= f.label :住所 %> <em></em><br />
-        <%= f.text_field :cli_address, placeholder:"住所", style:"width:100%;"%>
-      </div>
-      <div class="my-2" >
-        <%= f.label :備考 %> <em></em><br />
-        <%= f.text_area :cli_info, placeholder:"", style:"width:100%;"%>
-      </div>
-
-      <div class="my-2">
-        <%= f.label :メールアドレス %><br />
-        <%= f.email_field :cli_email, autofocus: true, autocomplete: "email", placeholder:"◯◯◯@example.com",style:"width:40%;"%>
-      </div>
-      
-      <div class="actions mt-3 d-flex justify-content-center"> 
-        <%= f.submit "更新" ,class:"btn btn-primary text-nowrap btn-lg border border-dark"%>
-      </div>
-    <% end %>
+    <% if @project.blank? %>
+      <%= form_with model: @client, url: user_client_path(current_user.id), local: true do |f| %>   
+        <%= render 'shared/error_messages', model: f.object %>
+        <%= render 'shared/client_edit',{ f: f }%>
+      <%end%>
+    <%elsif @item.blank? %>
+      <%= form_with model: @client, url: user_client_path(current_user.id,project_id:@project.id), local: true do |f| %>
+        <%= render 'shared/error_messages', model: f.object %>
+        <%= render 'shared/client_edit',{ f: f }%>
+      <%end%>
+    <%else%>
+      <%= form_with model: @client, url: user_client_path(current_user.id,project_id:@project.id,item_id:@item.id), local: true do |f| %>
+        <%= render 'shared/error_messages', model: f.object %>
+        <%= render 'shared/client_edit',{ f: f }%>
+      <%end%>
+    <%end%>
   </div>
+  <div class="mt-2 d-flex justify-content-center"> 
+    <%= link_to "削除", user_client_path, method: :delete,class:"btn btn-danger text-nowrap btn-lg border border-dark"%>
+  </div>  
 </div>

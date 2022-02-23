@@ -1,7 +1,5 @@
 class Project < ApplicationRecord  
 
-  validates :pro_day    , presence: true
-  validates :pro_number , presence: true
   validates :pro_name   , presence: true
 
 

@@ -7,10 +7,11 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
+    item = Item.new(item_params)
     @project = Project.find(params[:project_id])
-    if @item.save
-      redirect_to user_clients_path(current_user.id,client_id:@project.client_id,project_id:@project.id)
+    if item.save
+      new_item = Item.order(created_at: :desc).find_by(params[:project_id])
+      redirect_to user_clients_path(current_user.id,client_id:@project.client_id,project_id:@project.id,item_id:new_item.id)
     else
       render :new
     end
@@ -31,6 +32,12 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to user_clients_path(current_user.id,client_id:params[:client_id],project_id:params[:project_id])
   end
 
   private

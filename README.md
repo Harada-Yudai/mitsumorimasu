@@ -65,8 +65,6 @@ https://mitsumorimasu.herokuapp.com/
 
 | Column                     | Type        | Options                         |
 | -------------------------- | ----------- | ------------------------------- |
-| pro_day                    | string      | null: false                     |
-| pro_number                 | string      | null: false                     |
 | pro_name                   | string      | null: false                     |
 | pro_info                   | text        |                                 |
 | user                       | references  | null: false, foreign_key: true  |
