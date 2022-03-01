@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   validates :last_name , presence: true
   validates :first_name, presence: true
-  validates :phone_num , presence: true
+  validates :phone_num , numericality: { only_integer: true }, length: { in: 10..11 }
 
   has_many :clients
   has_many :projects

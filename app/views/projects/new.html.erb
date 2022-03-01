@@ -7,7 +7,7 @@
 </div>
 <div class="justify-content-center " style="height:90%;">
   <div style="height:100%; " class="bg-light border border-dark container rounded-lg  py-2 justify-content-center ">
-    <%= form_with model: @project, url: user_client_projects_path(object_id), local: true do |f| %>
+    <%= form_with model: @project, url: user_client_projects_path, local: true do |f| %>
           <%= render 'shared/error_messages', model: f.object %>
           
       <div class="field">
