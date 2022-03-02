@@ -9,6 +9,6 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :phone_num , numericality: { only_integer: true }, length: { in: 10..11 }
 
-  has_many :clients
-  has_many :projects
+  has_many :clients, dependent: :destroy
+  has_many :projects, dependent: :destroy
 end

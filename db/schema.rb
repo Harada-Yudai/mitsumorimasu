@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_124503) do
 
   create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "pro_name", null: false
+    t.string "pro_number"
     t.text "pro_info"
     t.bigint "user_id", null: false
     t.bigint "client_id", null: false

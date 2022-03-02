@@ -5,5 +5,5 @@ class Client < ApplicationRecord
   validates :cli_phone_num, numericality: { only_integer: true }, length: { in: 10..11 }
 
   belongs_to :user
-  has_many :projects
+  has_many :projects, dependent: :destroy
 end
