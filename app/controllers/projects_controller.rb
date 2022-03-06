@@ -8,8 +8,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @client = Client.find(params[:client_id])
-    @project["pro_number"] = 1111111
-    if @project.save
+        if @project.save
       new_project = Project.order(created_at: :desc).find_by(params[:client_id])
       redirect_to user_clients_path(current_user.id,client_id:@client.id,project_id:new_project.id)
     else

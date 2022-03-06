@@ -1,18 +1,18 @@
 <%= render "shared/header" %>
 <div class="mx-2 mt-1 pb-2 fs-6 bg-light">
-  <div class="d-flex mb-2">
+  <div class="d-flex mb-1">
     <div class="d-flex flex-column">
       <% if @project.blank? %>
         <div class="py-1 ml-0">
-          <%= link_to 'お客様情報確認', edit_user_client_path(current_user.id,id:@client.id), class:" mx-2 btn btn-success text-nowrap border border-dark" %>
+          <%= link_to 'お客様情報詳細', edit_user_client_path(current_user.id,id:@client.id), class:" mx-2 btn btn-success text-nowrap border border-dark" %>
         </div>
       <%elsif @item.blank? %>
         <div class="py-1 ml-0">
-          <%= link_to 'お客様情報確認', edit_user_client_path(current_user.id,id:@client.id,project_id:@project.id), class:" mx-2 btn btn-success text-nowrap border border-dark" %>
+          <%= link_to 'お客様情報詳細', edit_user_client_path(current_user.id,id:@client.id,project_id:@project.id), class:" mx-2 btn btn-success text-nowrap border border-dark" %>
         </div>
       <%else%>
         <div class="py-1 ml-0">
-          <%= link_to 'お客様情報確認', edit_user_client_path(current_user.id,id:@client.id,project_id:@project.id,item_id:@item.id), class:" mx-2 btn btn-success text-nowrap border border-dark" %>
+          <%= link_to 'お客様情報詳細', edit_user_client_path(current_user.id,id:@client.id,project_id:@project.id,item_id:@item.id), class:" mx-2 btn btn-success text-nowrap border border-dark" %>
         </div>
       <%end%>
       <div class="ml-0">
@@ -26,41 +26,62 @@
   </div>
   <% if @projects.blank? %>
   <%else%>
-    <div class="row flex-nowrap overflow-auto ml-0 " >
-      <% @projects.each do |projects| %>
+    <div class="d-flex">
+      <% if @project.blank? %>
+      <%else%>
         <div class="mx-2 ">
-          <div class="card border border-dark " style="width: 22rem; height: 7rem;">
+          <div class="card border border-dark " style="width: 320px; height: 110px;">
             <div class="card-body ">
               <h5 class="font-weight-bold text-truncate ">
-                <%= projects.pro_name %>
+                <%= @project.pro_name %>
               </h5>
               <div class="d-flex flex-row">
                 <div>
                   <div>
-                    <%= projects.created_at.strftime('%Y/%m/%d')%>
+                    <%= @project.created_at.strftime('%Y/%m/%d')%>
                   </div>
                   <div>
-                    No. <%= projects.pro_number%>
+                    No. <%= format("%08d", @project.id) %>
                   </div>
                 </div>
-                <div class="pl-4 py-2  d-flex">
-                  <%= link_to '選択', user_clients_path(current_user.id, client_id:@client.id, project_id:projects.id), class:"btn btn-warning border border-dark",value: projects.id %>
-                  <% if @project.blank? %>
-                  <%else%>
-                    <% if projects.id == @project.id %>
+                <div class=" ml-2 pl-4 py-2">
                       <%if @item.blank? %>
-                      <%= link_to '確認',edit_user_client_project_path(current_user.id, client_id:@client.id, id:projects.id) , class:"btn btn-success ml-2 border border-dark" %>
+                      <%= link_to '見積情報編集',edit_user_client_project_path(current_user.id, client_id:@client.id, id:@project.id) , class:"btn btn-success ml-2 border border-dark" %>
                       <%else%>
-                      <%= link_to '確認',edit_user_client_project_path(current_user.id, client_id:@client.id, id:projects.id, item_id:@item.id) , class:"btn btn-success ml-2 border border-dark" %>
+                      <%= link_to '見積情報編集',edit_user_client_project_path(current_user.id, client_id:@client.id, id:@project.id, item_id:@item.id) , class:"btn btn-success ml-2 border border-dark" %>
                       <%end%>
-                    <% end %>
-                  <% end %>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      <% end %>
+      <%end%>
+      <div class="row flex-nowrap overflow-auto ml-0" >
+        <% @projects.each do |projects| %>
+          <div class="mx-2 ">
+            <div class="card border border-dark" style="width: 250px; height: 98px;">
+              <div class="card-body">
+                <div class="font-weight-bold text-truncate">
+                  <%= projects.pro_name %>
+                </div>
+                <div class="d-flex flex-row">
+                  <div>
+                    <div>
+                      <%= projects.created_at.strftime('%Y/%m/%d')%>
+                    </div>
+                    <div>
+                      No. <%= format("%08d", projects.id) %>
+                    </div>
+                  </div>
+                  <div class=" ml-2 pl-4 pb-1">
+                    <%= link_to '選択', user_clients_path(current_user.id, client_id:@client.id, project_id:projects.id), class:"btn btn-warning border border-dark",value: projects.id %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
     <% if @project.blank? %>
     <%else%>
