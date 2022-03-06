@@ -58,28 +58,31 @@
       <%end%>
       <div class="row flex-nowrap overflow-auto ml-0" >
         <% @projects.each do |projects| %>
-          <div class="mx-2 ">
-            <div class="card border border-dark" style="width: 250px; height: 98px;">
-              <div class="card-body">
-                <div class="font-weight-bold text-truncate">
-                  <%= projects.pro_name %>
-                </div>
-                <div class="d-flex flex-row">
-                  <div>
-                    <div>
-                      <%= projects.created_at.strftime('%Y/%m/%d')%>
-                    </div>
-                    <div>
-                      No. <%= format("%08d", projects.id) %>
-                    </div>
+          <%if @project.id == projects.id %>
+          <%else%>
+            <div class="mx-2 ">
+              <div class="card border border-dark" style="width: 250px; height: 98px;">
+                <div class="card-body">
+                  <div class="font-weight-bold text-truncate">
+                    <%= projects.pro_name %>
                   </div>
-                  <div class=" ml-2 pl-4 pb-1">
-                    <%= link_to '選択', user_clients_path(current_user.id, client_id:@client.id, project_id:projects.id), class:"btn btn-warning border border-dark",value: projects.id %>
+                  <div class="d-flex flex-row">
+                    <div>
+                      <div>
+                        <%= projects.created_at.strftime('%Y/%m/%d')%>
+                      </div>
+                      <div>
+                        No. <%= format("%08d", projects.id) %>
+                      </div>
+                    </div>
+                    <div class=" ml-2 pl-4 mt-2">
+                      <%= link_to '選択', user_clients_path(current_user.id, client_id:@client.id, project_id:projects.id), class:"btn btn-warning border border-dark",value: projects.id %>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          <%end%>
         <% end %>
       </div>
     </div>
