@@ -12,44 +12,16 @@
     <div class="d-flex ml-5">
       <div>
         <div class="my-2">
-          会社名
+        <%= "会社名"+"　　：　"+"#{current_user.company}" %>
         </div>
         <div class="my-2">
-          住所
+          <%= "住所"+"　　　：　"+"#{current_user.address}" %>
         </div>
         <div class="my-2">
-          名前
+          <%= "名前"+"　　　：　"+"#{current_user.last_name}"+" "+"#{current_user.first_name}" %>
         </div>
         <div class="my-2">
-          電話番号
-        </div>
-      </div>
-      <div>
-        <div class="my-2">
-        　：　
-        </div>
-        <div class="my-2">
-        　：　
-        </div>
-        <div class="my-2">
-        　：　
-        </div>
-        <div class="my-2">
-        　：　
-        </div>
-      </div>
-      <div>
-        <div class="my-2">
-          <%= current_user.company %>
-        </div>
-        <div class="my-2">
-          <%= current_user.address %>
-        </div>
-        <div class="my-2">
-          <%= "#{current_user.last_name}"+" "+"#{current_user.first_name}" %>
-        </div>
-        <div class="my-2">
-          <%= current_user.phone_num %>
+          <%= "電話番号"+"　：　"+"#{current_user.phone_num}" %>
         </div>
       </div>
     </div>
