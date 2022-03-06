@@ -17,8 +17,6 @@ ActiveRecord::Schema.define(version: 2022_02_09_124503) do
     t.string "cli_company"
     t.string "cli_last_name", null: false
     t.string "cli_first_name", null: false
-    t.string "cli_last_kana"
-    t.string "cli_first_kana"
     t.string "cli_address"
     t.string "cli_phone_num", null: false
     t.text "cli_info"
@@ -55,8 +53,6 @@ ActiveRecord::Schema.define(version: 2022_02_09_124503) do
     t.string "encrypted_password", default: "", null: false
     t.string "last_name", null: false
     t.string "first_name", null: false
-    t.string "last_kana"
-    t.string "first_kana"
     t.string "company"
     t.string "address"
     t.string "phone_num", null: false

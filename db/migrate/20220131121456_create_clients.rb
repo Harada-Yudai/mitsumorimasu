@@ -4,9 +4,7 @@ class CreateClients < ActiveRecord::Migration[6.0]
       t.string :cli_email 
       t.string :cli_company  
       t.string :cli_last_name     , null: false
-      t.string :cli_first_name    , null: false
-      t.string :cli_last_kana  
-      t.string :cli_first_kana    
+      t.string :cli_first_name    , null: false  
       t.string :cli_address  
       t.string :cli_phone_num     , null: false
       t.text   :cli_info 
