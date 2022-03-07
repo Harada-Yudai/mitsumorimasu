@@ -121,7 +121,7 @@
           <%end%>
         </div>
       </div>
-      <div class=" border border-dark rounded-lg mx-2 py-1">
+      <div class=" border border-dark rounded-lg mx-2 pt-1">
         <div class="d-flex ">
           <div class="text-nowrap " style="width:240px;">
             <% link_to '印刷', "", class:" mx-2 btn btn-warning text-nowrap border border-dark" %>
@@ -139,7 +139,7 @@
               <%= "合計金額：#{all_price} 円" %>
             </h5>
             <h5 class="mx-2 pt-2 px-2 text-nowrap font-weight-bold text-truncate" style="width:25%; height:35px;">
-              <%= "No：xxxx0000" %>
+              No. <%= format("%08d", @project.id) %>
             </h5>
           </div>
         </div> 
