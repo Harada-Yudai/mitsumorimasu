@@ -5,10 +5,20 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:client_id])
     @projects = Project.where(client_id: params[:client_id]).order('created_at DESC')
     if params[:project_id].blank?
+      @project = Project.order(created_at: :desc).find_by(client_id: params[:client_id])
+      if @project.blank?
+      else
+        @items = Item.where(project_id: @project.id).order('created_at DESC')
+        if @items.blank?
+        else
+          @item = Item.order(created_at: :desc).find_by(project_id: @project.id)
+        end
+      end
     else
       @project = Project.find(params[:project_id])
       @items = Item.where(project_id: params[:project_id]).order('created_at DESC')
       if params[:item_id].blank?
+        @item = Item.order(created_at: :desc).find_by(project_id: @project.id)
       else
         @item = Item.find(params[:item_id])
       end
