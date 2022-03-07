@@ -10,9 +10,13 @@
 
 # URL
 https://mitsumorimasu.herokuapp.com/
+### Basic認証
+ID　　:　admin  
+Pass　:　mitsumori
+### テストユーザー
+アドレス　：　aaa@aaa  
+Pass 　　　: 　aaaaaa  
 
-ID : admin  
-Pass: mitsumori
 
 # 利用方法
 新規登録、ログイン後、以下のようなマイページが表示されます。  
@@ -20,7 +24,7 @@ Pass: mitsumori
 「お客様登録」から、お客様情報を追加できます。　  
 お客様名を選択することで、お客様ページに遷移します。
 <img width="1428" alt="image" src="https://user-images.githubusercontent.com/90507746/157051986-788a5627-a7ed-444f-8dbc-e12fb8d296f0.png">
-お客様ページでは、以下のような画面が表示されます。
+お客様ページでは、以下のような画面が表示されます。  
 「お客様情報詳細」から、情報を編集できます。  
 「新規御見積追加」から、見積を追加できます。  
 
