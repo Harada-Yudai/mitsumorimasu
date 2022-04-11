@@ -8,11 +8,11 @@
       <%= render "devise/shared/error_messages", resource: resource %>
       <div class="d-flex">   
         <div class="mr-5 my-2 " style="width:40%;">
-          <%= f.label :姓%> <em></em><br />
+          <%= f.label :姓%> <span class="text-danger">（必須）</span><em></em><br />
           <%= f.text_field :last_name, autofocus: true, placeholder:"山田"%>
         </div>
         <div class="my-2 mr-5"  style="width:40%;">
-          <%= f.label :名 %> <em></em><br />
+          <%= f.label :名 %> <span class="text-danger">（必須）</span><em></em><br />
           <%= f.text_field :first_name, placeholder:"太郎"%>
         </div>
       </div>
@@ -22,7 +22,7 @@
           <%= f.text_field :company, placeholder:"◯◯株式会社",style:"width:100%;"%>
         </div>
         <div class="my-2 mr-5"  style="width:40%;">
-          <%= f.label :電話番号 %> <em></em><br />
+          <%= f.label :電話番号 %> <span class="text-danger">（必須）</span><em></em><br />
           <%= f.text_field :phone_num, placeholder:"09012345678"%>
         </div>
       </div>
@@ -36,7 +36,7 @@
       </div>
 
       <div class="my-2">
-        <%= f.label :メールアドレス %><br />
+        <%= f.label :メールアドレス %><span class="text-danger">（必須）</span><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"◯◯◯@example.com" ,style:"width:40%;"%>
       </div>
 
