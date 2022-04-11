@@ -1,0 +1,28 @@
+ja:
+    activerecord:
+      attributes:
+        user:
+          email: 'メールアドレス'
+          password: 'パスワード'
+          password_confirmation: 'パスワード確認'
+          last_name: '姓'
+          first_name: '名'
+          company: '会社名'
+          address: '住所'
+          phone_num: '電話番号'
+          info: '備考'  
+        client:
+          cli_email: 'メールアドレス'
+          cli_last_name: '姓'
+          cli_first_name: '名'
+          cli_company: '会社名'
+          cli_address: '住所'
+          cli_phone_num: '電話番号'
+          cli_info: '備考'
+        project:
+          pro_name: '件名'
+          pro_info: '備考'
+        item:
+          item_name: '商品名'
+          item_price: '価格'
+          item_amount: '数量'

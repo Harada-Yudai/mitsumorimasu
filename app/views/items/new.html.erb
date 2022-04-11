@@ -14,18 +14,18 @@
     <%= form_with model: @item, url: user_client_project_items_path, local: true do |f|%>
       <%= render 'shared/error_messages', model: f.object %>
           
-      <div class="field ">
+      <div class="">
         <%= f.label :商品名 %> <em></em><br />
         <%= f.text_field :item_name, autofocus: true, placeholder:"商品名",style:"width:40%;"%>
       </div>
 
-      <div class="field">
+      <div class="">
         <%= f.label :価格 %> <em></em><br />
         <%= f.text_field :item_price, placeholder:"価格"%>
         円
       </div>
 
-      <div class="field">
+      <div class="">
         <%= f.label :数量 %> <em></em><br />
         <%= f.text_field :item_amount, placeholder:"数量"%>
         個
